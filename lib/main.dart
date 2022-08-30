@@ -4,6 +4,17 @@ import 'package:audioplayers/audioplayers.dart';
 void main() => runApp(XylophoneApp());
 
 class XylophoneApp extends StatelessWidget {
+  void playSound(int i) => AudioPlayer().play(AssetSource('note$i.wav'));
+
+  Widget buildKey({Color color, int soundNumber}) => Expanded(
+        child: TextButton(
+          child: Container(color: color),
+          onPressed: () {
+            playSound(soundNumber);
+          },
+        ),
+      );
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -12,69 +23,13 @@ class XylophoneApp extends StatelessWidget {
           child: Center(
             child: Column(
               children: <Widget>[
-                Expanded(
-                  child: TextButton(
-                    child: Container(color: Colors.red),
-                    onPressed: () {
-                      var player = AudioPlayer();
-                      player.play(AssetSource('note1.wav'));
-                    },
-                  ),
-                ),
-                Expanded(
-                  child: TextButton(
-                    child: Container(color: Colors.orange),
-                    onPressed: () {
-                      var player = AudioPlayer();
-                      player.play(AssetSource('note2.wav'));
-                    },
-                  ),
-                ),
-                Expanded(
-                  child: TextButton(
-                    child: Container(color: Colors.yellow),
-                    onPressed: () {
-                      var player = AudioPlayer();
-                      player.play(AssetSource('note3.wav'));
-                    },
-                  ),
-                ),
-                Expanded(
-                  child: TextButton(
-                    child: Container(color: Colors.green),
-                    onPressed: () {
-                      var player = AudioPlayer();
-                      player.play(AssetSource('note4.wav'));
-                    },
-                  ),
-                ),
-                Expanded(
-                  child: TextButton(
-                    child: Container(color: Colors.blue),
-                    onPressed: () {
-                      var player = AudioPlayer();
-                      player.play(AssetSource('note5.wav'));
-                    },
-                  ),
-                ),
-                Expanded(
-                  child: TextButton(
-                    child: Container(color: Colors.blue.shade900),
-                    onPressed: () {
-                      var player = AudioPlayer();
-                      player.play(AssetSource('note6.wav'));
-                    },
-                  ),
-                ),
-                Expanded(
-                  child: TextButton(
-                    child: Container(color: Colors.purple),
-                    onPressed: () {
-                      var player = AudioPlayer();
-                      player.play(AssetSource('note7.wav'));
-                    },
-                  ),
-                ),
+                buildKey(color: Colors.red, soundNumber: 1),
+                buildKey(color: Colors.orange, soundNumber: 2),
+                buildKey(color: Colors.yellow, soundNumber: 3),
+                buildKey(color: Colors.green, soundNumber: 4),
+                buildKey(color: Colors.blue, soundNumber: 5),
+                buildKey(color: Colors.blue.shade900, soundNumber: 6),
+                buildKey(color: Colors.purple, soundNumber: 7),
               ],
             ),
           ),
